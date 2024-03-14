@@ -138,9 +138,9 @@ function default_settings() {
   CPU_TYPE=""
   CORE_COUNT="2"
   RAM_SIZE="2048"
-  BRG="vmbr0"
+  BRG="vmbr12"
   MAC="$GEN_MAC"
-  VLAN=""
+  VLAN="12"
   MTU=""
   START_VM="yes"
   echo -e "${DGN}Using Virtual Machine ID: ${BGN}${VMID}${CL}"
@@ -257,9 +257,9 @@ function advanced_settings() {
     exit-script
   fi
 
-  if BRG=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a Bridge" 8 58 vmbr0 --title "BRIDGE" --cancel-button Exit-Script 3>&1 1>&2 2>&3); then
+  if BRG=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a Bridge" 8 58 vmbr12 --title "BRIDGE" --cancel-button Exit-Script 3>&1 1>&2 2>&3); then
     if [ -z $BRG ]; then
-      BRG="vmbr0"
+      BRG="vmbr12"
       echo -e "${DGN}Using Bridge: ${BGN}$BRG${CL}"
     else
       echo -e "${DGN}Using Bridge: ${BGN}$BRG${CL}"
@@ -283,7 +283,7 @@ function advanced_settings() {
   if VLAN1=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a Vlan(leave blank for default)" 8 58 --title "VLAN" --cancel-button Exit-Script 3>&1 1>&2 2>&3); then
     if [ -z $VLAN1 ]; then
       VLAN1="Default"
-      VLAN=""
+      VLAN="12"
       echo -e "${DGN}Using Vlan: ${BGN}$VLAN1${CL}"
     else
       VLAN=",tag=$VLAN1"

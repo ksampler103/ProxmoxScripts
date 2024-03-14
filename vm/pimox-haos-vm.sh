@@ -125,12 +125,12 @@ function default_settings() {
   CORE_COUNT="2"
   echo -e "${DGN}Allocated RAM: ${BGN}4096${CL}"
   RAM_SIZE="4096"
-  echo -e "${DGN}Using Bridge: ${BGN}vmbr0${CL}"
-  BRG="vmbr0"
+  echo -e "${DGN}Using Bridge: ${BGN}vmbr12${CL}"
+  BRG="vmbr12"
   echo -e "${DGN}Using MAC Address: ${BGN}$GEN_MAC${CL}"
   MAC=$GEN_MAC
   echo -e "${DGN}Using VLAN: ${BGN}Default${CL}"
-  VLAN=""
+  VLAN="12"
   echo -e "${DGN}Using Interface MTU Size: ${BGN}Default${CL}"
   MTU=""
   echo -e "${DGN}Start VM when completed: ${BGN}yes${CL}"
@@ -187,10 +187,10 @@ function advanced_settings() {
   else
     if [ $exitstatus = 0 ]; then echo -e "${DGN}Allocated RAM: ${BGN}$RAM_SIZE${CL}"; fi
   fi
-  BRG=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a Bridge" 8 58 vmbr0 --title "BRIDGE" --cancel-button Exit-Script 3>&1 1>&2 2>&3)
+  BRG=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a Bridge" 8 58 vmbr12 --title "BRIDGE" --cancel-button Exit-Script 3>&1 1>&2 2>&3)
   exitstatus=$?
   if [ -z $BRG ]; then
-    BRG="vmbr0"
+    BRG="vmbr12"
     echo -e "${DGN}Using Bridge: ${BGN}$BRG${CL}"
   else
     if [ $exitstatus = 0 ]; then echo -e "${DGN}Using Bridge: ${BGN}$BRG${CL}"; fi
@@ -210,7 +210,7 @@ function advanced_settings() {
   exitstatus=$?
   if [ $exitstatus = 0 ]; then
     if [ -z $VLAN1 ]; then
-      VLAN1="Default" VLAN=""
+      VLAN1="Default" VLAN="12"
       echo -e "${DGN}Using Vlan: ${BGN}$VLAN1${CL}"
     else
       VLAN=",tag=$VLAN1"

@@ -199,11 +199,11 @@ function default_settings() {
   HN=openwrt
   CORE_COUNT="1"
   RAM_SIZE="256"
-  BRG="vmbr0"
-  VLAN=""
+  BRG="vmbr12"
+  VLAN="12"
   MAC=$GEN_MAC
   LAN_MAC=$GEN_MAC_LAN
-  LAN_BRG="vmbr0"
+  LAN_BRG="vmbr12"
   LAN_IP_ADDR="192.168.1.1"
   LAN_NETMASK="255.255.255.0"
   LAN_VLAN=",tag=999"
@@ -273,18 +273,18 @@ function advanced_settings() {
     exit-script
   fi
 
-  if BRG=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a WAN Bridge" 8 58 vmbr0 --title "WAN BRIDGE" --cancel-button Exit-Script 3>&1 1>&2 2>&3); then
+  if BRG=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a WAN Bridge" 8 58 vmbr12 --title "WAN BRIDGE" --cancel-button Exit-Script 3>&1 1>&2 2>&3); then
     if [ -z $BRG ]; then
-      BRG="vmbr0"
+      BRG="vmbr12"
     fi
     echo -e "${DGN}Using WAN Bridge: ${BGN}$BRG${CL}"
   else
     exit-script
   fi
 
-  if LAN_BRG=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a LAN Bridge" 8 58 vmbr0 --title "LAN BRIDGE" --cancel-button Exit-Script 3>&1 1>&2 2>&3); then
+  if LAN_BRG=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a LAN Bridge" 8 58 vmbr12 --title "LAN BRIDGE" --cancel-button Exit-Script 3>&1 1>&2 2>&3); then
     if [ -z $LAN_BRG ]; then
-      LAN_BRG="vmbr0"
+      LAN_BRG="vmbr12"
     fi
     echo -e "${DGN}Using LAN Bridge: ${BGN}$LAN_BRG${CL}"
   else
@@ -334,7 +334,7 @@ function advanced_settings() {
   if VLAN1=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set a WAN Vlan (leave blank for default)" 8 58 --title "WAN VLAN" --cancel-button Exit-Script 3>&1 1>&2 2>&3); then
     if [ -z $VLAN1 ]; then
       VLAN1="Default"
-      VLAN=""
+      VLAN="12"
     else
       VLAN=",tag=$VLAN1"
     fi
